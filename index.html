@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUNRISE OPERATIONS, LLC — Administrative & Other Support Services</title>
+  <meta name="description" content="Sunrise Operations, LLC provides specialized administrative & other support services that streamline back-office operations, improve vendor coordination, and raise service quality for organizations across Florida and the U.S." />
+
+  <!-- ====== FONTS & ICONS ====== -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Ccircle cx='128' cy='128' r='120' fill='%23ff8c42'/%3E%3Cpath d='M40 140c20-26 64-44 88-44s68 18 88 44' fill='none' stroke='%23fff' stroke-width='18' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- ====== BASE STYLES ====== -->
+  <style>
+    :root{
+      --bg: #0f1f1c;
+      --bg-2:#132a26;
+      --card:#0f2521;
+      --accent:#ff8c42;
+      --accent-2:#ffd3b2;
+      --text:#eaf2f1;
+      --muted:#b6c3c1;
+      --ok:#00cf80;
+      --shadow: 0 10px 30px rgba(0,0,0,.25);
+      --radius: 18px;
+    }
+    *{ box-sizing:border-box }
+    html{ scroll-behavior:smooth }
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 80% -10%, rgba(255,140,66,.25), transparent 60%),
+                  radial-gradient(1000px 600px at 10% 10%, rgba(0,207,128,.18), transparent 60%),
+                  var(--bg);
+      line-height:1.6;
+    }
+
+    /* ===== Header / Navigation ===== */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:saturate(140%) blur(8px);
+      background:linear-gradient(180deg, rgba(15,31,28,.9), rgba(15,31,28,.7));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .wrap{
+      width:min(1180px, 92vw);
+      margin:0 auto;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:16px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);
+      font-weight:800; letter-spacing:.2px;
+    }
+    .brand-badge{
+      width:38px; height:38px; display:grid; place-items:center; border-radius:50%;
+      background:conic-gradient(from 120deg, var(--accent), #f8b27a, #ffd3b2, var(--accent));
+      color:#0d1715; font-weight:800; box-shadow:var(--shadow);
+    }
+    nav ul{ display:flex; padding:0; margin:0; list-style:none; gap:22px; align-items:center }
+    nav a{
+      color:var(--text); text-decoration:none; font-weight:600; opacity:.9; padding:8px 12px; border-radius:10px;
+      transition:transform .2s ease, background .2s ease, color .2s ease;
+    }
+    nav a:hover{ background:rgba(255,255,255,.06); transform:translateY(-1px) }
+    .cta{
+      background:var(--accent); color:#0e1715!important; border:none; cursor:pointer; font-weight:800;
+      padding:10px 16px; border-radius:12px; box-shadow:0 6px 18px rgba(255,140,66,.35);
+    }
+    .cta:hover{ background:#ff9f60 }
+
+    /* ===== Hero ===== */
+    .hero{
+      position:relative;
+      padding: 84px 0 64px;
+      background:
+        linear-gradient(180deg, rgba(15,31,28,.0), rgba(15,31,28,.7) 80%),
+        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:40px;
+      align-items:center;
+    }
+    .hero h1{ font-size: clamp(34px, 4.2vw, 56px); line-height:1.1; margin:0 0 10px }
+    .hero p.lead{
+      font-size: clamp(16px, 1.8vw, 20px);
+      color:var(--muted);
+      margin:0 0 22px;
+      max-width: 56ch;
+    }
+    .badge-row{ display:flex; flex-wrap:wrap; gap:12px; margin:22px 0 28px }
+    .pill{
+      padding:8px 12px; border:1px solid rgba(255,255,255,.14);
+      border-radius:999px; font-size:13px; color:var(--accent-2); background:rgba(255,255,255,.03)
+    }
+    .hero-card{
+      background:rgba(19,42,38,.82);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius);
+      padding:22px; box-shadow:var(--shadow)
+    }
+    .hero a.button{
+      display:inline-block; text-decoration:none; background:var(--accent); color:#0e1715; padding:12px 16px;
+      border-radius:12px; font-weight:800; margin-right:10px
+    }
+    .hero a.button.secondary{
+      background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.14)
+    }
+    .proof{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:16px
+    }
+    .metric{
+      background:#102722; border:1px solid rgba(255,255,255,.06); border-radius:14px; padding:14px;
+      text-align:center
+    }
+    .metric strong{ font-size:22px; display:block }
+    .shadow-img{
+      display:block; width:100%; height:auto; border-radius:16px; box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.08)
+    }
+
+    /* ===== Sections ===== */
+    section{ padding:70px 0 }
+    .section-title{
+      font-size: clamp(28px, 3vw, 40px);
+      margin:0 0 8px; letter-spacing:.2px
+    }
+    .section-kicker{
+      text-transform:uppercase; letter-spacing:.18em; font-weight:800; font-size:12px; color:var(--accent-2);
+      display:block; margin-bottom:10px
+    }
+    .muted{ color:var(--muted) }
+
+    /* ===== Cards / Grids ===== */
+    .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+    .grid-2{ display:grid; grid-template-columns:repeat(2,1fr); gap:22px }
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:var(--radius);
+      padding:18px 18px 22px;
+      box-shadow:var(--shadow);
+    }
+    .card h3{ margin:6px 0 8px }
+    .check{ color:var(--ok); margin-right:8px }
+    .tag{ display:inline-block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; padding:6px 8px; border:1px solid rgba(255,255,255,.14); border-radius:999px; opacity:.8 }
+
+    /* ===== Timeline / Process ===== */
+    .timeline{
+      position:relative; padding-left:34px
+    }
+    .timeline::before{
+      content:""; position:absolute; left:12px; top:0; bottom:0; width:2px; background:linear-gradient(#ff8c42,#ffd3b2)
+    }
+    .step{ position:relative; margin:0 0 24px; padding:12px 16px; background:#0f2521; border-radius:14px; border:1px solid rgba(255,255,255,.08) }
+    .step::before{
+      content:""; position:absolute; left:-26px; top:16px; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px rgba(255,140,66,.25)
+    }
+
+    /* ===== Footer ===== */
+    footer{
+      padding:48px 0 80px;
+      border-top:1px solid rgba(255,255,255,.06);
+      background:linear-gradient(180deg, rgba(19,42,38,.8), rgba(19,42,38,.95));
+    }
+    .contact-grid{ display:grid; grid-template-columns: 2fr 1fr; gap:22px }
+    .contact-tile{
+      background:#0f2521; border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:18px 18px 20px
+    }
+    .small{ font-size:14px }
+
+    /* ===== Modal Styles ===== */
+    .modal{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; backdrop-filter: blur(8px);
+      background:rgba(0,0,0,.45); z-index:100;
+    }
+    .modal.open{ display:flex }
+    .modal-card{
+      width:min(720px, 92vw);
+      background:#0f2521; border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:20px; box-shadow:var(--shadow)
+    }
+    .modal-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:10px }
+    .x{ background:transparent; border:1px solid rgba(255,255,255,.14); color:var(--text); padding:6px 10px; border-radius:10px; cursor:pointer }
+    .grid-form{ display:grid; grid-template-columns:1fr 1fr; gap:14px }
+    .grid-form label{ font-size:13px; color:var(--muted) }
+    .grid-form input, .grid-form textarea, .grid-form select{
+      width:100%; padding:12px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.16); background:#0f1f1c; color:var(--text)
+    }
+    .grid-form textarea{ min-height:120px; grid-column:1/-1; resize:vertical }
+    .submit-row{ display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-top:8px }
+    .ghost{ background:transparent; border:1px solid rgba(255,255,255,.18); color:var(--text); padding:10px 14px; border-radius:12px; cursor:pointer }
+    .solid{ background:var(--accent); color:#0e1715; border:none; padding:12px 16px; border-radius:12px; font-weight:800; cursor:pointer }
+    .helper{ font-size:12px; color:var(--muted) }
+
+    /* ===== Confirmation (second modal) ===== */
+    .confirm-card{
+      width:min(520px, 92vw);
+      background:#0f2521; border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:26px; text-align:center;
+      box-shadow:var(--shadow)
+    }
+    .ok-badge{ width:56px; height:56px; border-radius:50%; background:rgba(0,207,128,.15); display:grid; place-items:center; margin:0 auto 12px; border:1px solid rgba(255,255,255,.15) }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 960px){
+      .hero-grid{ grid-template-columns:1fr; }
+      .grid-3{ grid-template-columns:1fr 1fr }
+      .grid-2{ grid-template-columns:1fr }
+      .contact-grid{ grid-template-columns:1fr }
+      nav ul{ gap:10px; flex-wrap:wrap }
+      .badge-row{ gap:8px }
+    }
+    @media (max-width: 640px){
+      .grid-3{ grid-template-columns:1fr }
+      .grid-form{ grid-template-columns:1fr }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =================== HEADER =================== -->
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Sunrise Operations">
+          <span class="brand-badge">SO</span>
+          <span>SUNRISE OPERATIONS, LLC</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="#about">Story</a></li>
+            <li><a href="#services">Capabilities</a></li>
+            <li><a href="#advantages">Why Us</a></li>
+            <li><a href="#process">How We Work</a></li>
+            <li><a href="#mission">Mission</a></li>
+            <li><a href="#contact">Contacts</a></li>
+            <li><a href="#!" class="cta" id="openModalBtn">Get a Quote</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- =================== HERO =================== -->
+  <main id="top" class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="section-kicker">Administrative & Other Support Services</span>
+        <h1>Your Trusted Partner for Clean, Compliant, and Coordinated Operations</h1>
+        <p class="lead">
+          Sunrise Operations, LLC helps organizations untangle back-office complexity—combining administrative rigor,
+          vendor orchestration, site coordination, and quality assurance across facilities and field operations.
+          We design repeatable workflows that hold up in the real world: clear responsibilities, measurable SLAs, and
+          fewer surprises for your teams and customers.
+        </p>
+
+        <div class="badge-row">
+          <span class="pill">SLA-driven Service Management</span>
+          <span class="pill">Lean Process Design</span>
+          <span class="pill">Vendor & Field Coordination</span>
+          <span class="pill">Waste & Remediation Liaison</span>
+          <span class="pill">Data-backed Reporting</span>
+        </div>
+
+        <a class="button" href="#services">Explore Services</a>
+        <a class="button secondary" id="openModalBtn2" href="#!">Request a Call</a>
+
+        <div class="proof">
+          <div class="metric"><strong>10+</strong><span class="small muted">Industries Served</span></div>
+          <div class="metric"><strong>60+</strong><span class="small muted">Active Workflows</span></div>
+          <div class="metric"><strong>98%</strong><span class="small muted">On-time Task Closure</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <img class="shadow-img" src="main1.jpg" alt="Team coordinating administrative and field operations" />
+        <p class="small muted" style="margin:12px 4px 0">
+          We blend desk work with field reality—procurement, vendor controls, scheduling, waste-handling paperwork, and service verification.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- =================== ABOUT =================== -->
+  <section id="about">
+    <div class="wrap">
+      <span class="section-kicker">Behind the Sunrise Story</span>
+      <h2 class="section-title">Who We Are & What We Solve</h2>
+      <div class="grid-2">
+        <div class="card">
+          <p>
+            Sunrise Operations, LLC is a Florida-based support services firm built to make complex day-to-day operations manageable.
+            We coordinate people, paperwork, and providers across administrative and support functions where delays and ambiguity
+            silently drive up costs. Our team integrates with your internal staff, translating organizational goals into practical
+            routines that vendors and crews can actually follow. We map responsibilities, audit data inputs, and establish
+            exception paths so nothing important falls through the cracks. The result is a calmer operation—complete records,
+            predictable service windows, and clear accountability from the back office to the job site.
+          </p>
+          <p>
+            While we serve clients nationally, our administrative hub is in South Miami. From here we manage intake,
+            scheduling, and service confirmation; coordinate waste handling or remediation partners when needed; and compile
+            performance dashboards for leadership. Our specialty is constructing workflows that scale—simple to adopt,
+            strict on compliance, and flexible enough to adapt to local constraints without losing control.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>We focus on outcomes that matter</h3>
+          <ul>
+            <li>Reduced cycle times from request to verified completion.</li>
+            <li>Cleaner vendor records: licenses, COIs, W-9s, and safety attestations.</li>
+            <li>Lower rework through detailed scopes and photo-based acceptance.</li>
+            <li>Better visibility: weekly exception logs and SLA compliance snapshots.</li>
+            <li>Audit-ready documentation for environmental and remediation tasks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== SERVICES =================== -->
+  <section id="services">
+    <div class="wrap">
+      <span class="section-kicker">Capabilities That Move the Needle</span>
+      <h2 class="section-title">Services Engineered for Real-World Operations</h2>
+
+      <div class="grid-3" style="margin-top:10px">
+        <article class="card">
+          <span class="tag">Service</span>
+          <h3>Vendor Coordination & SLA Management</h3>
+          <p class="muted">
+            We vet providers, maintain credentials, and build scope templates so requests are consistent and unambiguous.
+            Our coordinators schedule work, confirm arrival windows, and track completion evidence against defined SLAs.
+            Weekly rollups spotlight risks, enabling proactive adjustments before they turn into delays or chargebacks.
+          </p>
+          <ul>
+            <li><span class="check">✔</span>Centralized requests & dispatch</li>
+            <li><span class="check">✔</span>Live status & exception handling</li>
+            <li><span class="check">✔</span>Photo & document verification</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Service</span>
+          <h3>Administrative Backbone & Compliance</h3>
+          <p class="muted">
+            We establish the administrative structure that operations rely on: intake forms, approval routes, change logs,
+            and record retention. Whether it’s routine janitorial oversight or specialized remediation work, our team
+            keeps your files audit-ready—permits, manifests, MSDS sheets, licenses, and insurance all current and available.
+          </p>
+          <ul>
+            <li><span class="check">✔</span>Policy-driven templates & checklists</li>
+            <li><span class="check">✔</span>Data hygiene & traceability</li>
+            <li><span class="check">✔</span>Regulatory documentation control</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <span class="tag">Service</span>
+          <h3>Field Services Orchestration & Quality Assurance</h3>
+          <p class="muted">
+            When work happens across multiple locations, details matter. We coordinate on-site access, safety prerequisites,
+            and end-of-job verification including before/after media. Our QA routines spot recurring issues and feed them
+            back into scopes so each new dispatch benefits from the last.
+          </p>
+          <ul>
+            <li><span class="check">✔</span>Pre-arrival readiness checks</li>
+            <li><span class="check">✔</span>Completion criteria with visual proof</li>
+            <li><span class="check">✔</span>Corrective action follow-through</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== ADVANTAGES (Block 4: Why Choose Us) =================== -->
+  <section id="advantages">
+    <div class="wrap">
+      <span class="section-kicker">Reasons Clients Stay</span>
+      <h2 class="section-title">Why Choose Sunrise Over “Good Enough”</h2>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>We Make Work Measurable</h3>
+          <p class="muted">
+            Every request is traceable—from intake to acceptance—so it’s clear who owns each action and when it happened.
+            Targets are expressed as SLAs and KPIs, not aspirations. Our clients see fewer email chases and more closed loops.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Compliance Without Friction</h3>
+          <p class="muted">
+            Licenses, insurance, waste manifests, and safety attestations live where they are needed. Providers can’t be dispatched
+            unless they’re current, and documentation attaches to the job record automatically.
+          </p>
+        </div>
+        <div class="card">
+          <h3>People You Can Reach</h3>
+          <p class="muted">
+            You will always have a named coordinator who understands your sites, constraints, and priorities.
+            When exceptions happen, you’ll speak with someone who can actually solve them—not just log a ticket.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== PROCESS (Block 5: How We Work) =================== -->
+  <section id="process">
+    <div class="wrap">
+      <span class="section-kicker">Clear Steps, Predictable Results</span>
+      <h2 class="section-title">Our Three-Step Operating Rhythm</h2>
+
+      <div class="timeline">
+        <div class="step">
+          <h3>1) Discovery & Workflow Design</h3>
+          <p class="muted">
+            We document current state, stakeholders, and bottlenecks; define acceptance criteria; and convert tribal knowledge into
+            forms, decision trees, and communication cadences. The goal is a lightweight workflow your team actually wants to use.
+          </p>
+        </div>
+        <div class="step">
+          <h3>2) Launch & Vendor Enablement</h3>
+          <p class="muted">
+            We onboard providers, verify credentials, and pilot the process on a small set of requests.
+            Early findings are folded back into scopes and templates. Stakeholders receive a simple playbook and escalation path.
+          </p>
+        </div>
+        <div class="step">
+          <h3>3) Run, Measure, Improve</h3>
+          <p class="muted">
+            We coordinate daily work, track SLAs, and publish exception logs and trend snapshots.
+            As patterns emerge, we update the workflow—reducing noise and improving time-to-resolution without sacrificing control.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== MISSION / DIFFERENTIATORS (Extra content for richness) =================== -->
+  <section id="mission">
+    <div class="wrap">
+      <span class="section-kicker">Purpose & Direction</span>
+      <h2 class="section-title">Mission, Goals & What Sets Us Apart</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Our Mission</h3>
+          <p class="muted">
+            To deliver administrative and operational support that is calm, accountable, and practical.
+            We strive to turn busy work into reliable systems—respecting budgets and people’s time while meeting
+            environmental, safety, and documentation standards across every job.
+          </p>
+          <ul>
+            <li><span class="check">✔</span>Transparent status at any moment</li>
+            <li><span class="check">✔</span>Fewer escalations, faster closure</li>
+            <li><span class="check">✔</span>Cleaner audits and verifiable outcomes</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>How We're Different</h3>
+          <p class="muted">
+            Many vendors offer “a portal” or “a crew.” We’re the connective tissue—combining
+            administrative precision with on-the-ground awareness. We don’t ask you to adapt to
+            a rigid tool; we adapt our approach to your portfolio, then automate what makes sense.
+          </p>
+          <p class="muted">Expect fewer surprises and more finished work that stands up to scrutiny.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== CONTACTS =================== -->
+  <section id="contact">
+    <div class="wrap">
+      <span class="section-kicker">Let’s Coordinate</span>
+      <h2 class="section-title">Contact & Location</h2>
+
+      <div class="contact-grid">
+        <div class="contact-tile">
+          <h3>We’d love to learn about your operations</h3>
+          <p class="muted">
+            Tell us where work slows down—intake, vendor handoffs, documentation, or verification.
+            Share a recent challenge and we’ll outline a lean process and a pragmatic rollout plan.
+          </p>
+          <ul>
+            <li><span class="check">✔</span>“I need reliable vendor coordination across sites.”</li>
+            <li><span class="check">✔</span>“Our waste & remediation records must be airtight.”</li>
+            <li><span class="check">✔</span>“We want SLAs and real completion proof.”</li>
+          </ul>
+          <button class="cta" id="openModalBtn3" style="margin-top:10px">Open Contact Form</button>
+        </div>
+
+        <div class="contact-tile">
+          <h3>Business Details</h3>
+          <p class="small"><strong>Address:</strong><br/>7171 SW 62ND Ave, Ste 503, 33143 South Miami</p>
+          <p class="small"><strong>Email:</strong><br/><a href="mailto:shella@sunriseoperations.org" style="color:var(--accent-2)">shella@sunriseoperations.org</a></p>
+          <p class="small muted">Service area: Florida & nationwide remote coordination.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== FOOTER =================== -->
+  <footer>
+    <div class="wrap">
+      <div class="grid-2">
+        <div>
+          <h3 style="margin-top:0">SUNRISE OPERATIONS, LLC</h3>
+          <p class="small muted">
+            Administrative and Other Support Services — vendor coordination, compliance, quality assurance, and field service orchestration.
+            We turn messy handoffs into dependable routines.
+          </p>
+        </div>
+        <div style="text-align:right">
+          <a class="cta" id="openModalBtn4" href="#!">Start the Conversation</a>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:22px">© <span id="year"></span> Sunrise Operations, LLC. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- =================== CONTACT MODAL =================== -->
+  <div class="modal" id="contactModal" aria-hidden="true" role="dialog" aria-label="Contact form">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <strong>Tell us about your operations challenge</strong>
+          <div class="helper">We respond within one business day. Fields marked * are required.</div>
+        </div>
+        <button class="x" id="closeModalBtn" aria-label="Close contact form">Close</button>
+      </div>
+
+      <form id="contactForm">
+        <div class="grid-form">
+          <div>
+            <label for="name">Full Name *</label>
+            <input id="name" name="name" type="text" required placeholder="Alex Morgan" />
+          </div>
+          <div>
+            <label for="email">Work Email *</label>
+            <input id="email" name="email" type="email" required placeholder="alex@company.com" />
+          </div>
+          <div>
+            <label for="company">Company</label>
+            <input id="company" name="company" type="text" placeholder="Company Inc." />
+          </div>
+          <div>
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic">
+              <option>Vendor Coordination</option>
+              <option>Administrative Compliance</option>
+              <option>Field QA & Verification</option>
+              <option>Waste/Remediation Support</option>
+              <option>Other</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="timeline">Target Start</label>
+            <input id="timeline" name="timeline" type="date" />
+          </div>
+          <div style="grid-column:1/-1">
+            <label for="message">Describe your need *</label>
+            <textarea id="message" name="message" required placeholder="Where are handoffs failing? What ‘done’ looks like for you?"></textarea>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button type="button" class="ghost" id="closeModalBtn2">Cancel</button>
+          <button type="submit" class="solid">Send Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =================== CONFIRMATION MODAL =================== -->
+  <div class="modal" id="confirmModal" aria-hidden="true" role="alertdialog" aria-label="Submission confirmation">
+    <div class="confirm-card">
+      <div class="ok-badge">✅</div>
+      <h3>Message Sent</h3>
+      <p class="muted">Thank you! Your request is on its way to our coordination desk. We’ll reach out shortly.</p>
+      <button class="solid" id="confirmClose">Close</button>
+    </div>
+  </div>
+
+  <!-- =================== SCRIPTS =================== -->
+  <script>
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll focus management (for accessibility improvement)
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const targetId = a.getAttribute('href');
+        if(targetId === '#!' || targetId === '#') return;
+        const el = document.querySelector(targetId);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+          history.pushState(null, '', targetId);
+        }
+      });
+    });
+
+    // Contact Modal open/close logic
+    const openers = [ 'openModalBtn', 'openModalBtn2', 'openModalBtn3', 'openModalBtn4' ].map(id=>document.getElementById(id));
+    const contactModal = document.getElementById('contactModal');
+    const confirmModal = document.getElementById('confirmModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const closeModalBtn2 = document.getElementById('closeModalBtn2');
+    const confirmClose = document.getElementById('confirmClose');
+
+    openers.forEach(btn=>{
+      if(btn){
+        btn.addEventListener('click', e=>{
+          e.preventDefault();
+          contactModal.classList.add('open');
+          contactModal.setAttribute('aria-hidden','false');
+          document.getElementById('name').focus();
+        });
+      }
+    });
+
+    function closeContact(){
+      contactModal.classList.remove('open');
+      contactModal.setAttribute('aria-hidden','true');
+    }
+    [closeModalBtn, closeModalBtn2].forEach(b=>{
+      if(b){ b.addEventListener('click', closeContact); }
+    });
+    contactModal.addEventListener('click', e=>{
+      if(e.target === contactModal){ closeContact(); }
+    });
+
+    // Confirmation modal behavior
+    function openConfirm(){
+      confirmModal.classList.add('open');
+      confirmModal.setAttribute('aria-hidden','false');
+      confirmClose.focus();
+    }
+    function closeConfirm(){
+      confirmModal.classList.remove('open');
+      confirmModal.setAttribute('aria-hidden','true');
+    }
+    confirmClose.addEventListener('click', closeConfirm);
+    confirmModal.addEventListener('click', e=>{
+      if(e.target === confirmModal){ closeConfirm(); }
+    });
+
+    // Form submit (demo only)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      // Simple front-end validation
+      const name = this.name.value.trim();
+      const email = this.email.value.trim();
+      const message = this.message.value.trim();
+      if(!name || !email || !message){
+        alert('Please complete required fields.');
+        return;
+      }
+      // Close form and show confirmation
+      closeContact();
+      // Simulate network latency for a subtle UX feel
+      setTimeout(openConfirm, 300);
+      // Reset the form
+      this.reset();
+    });
+
+    // Keyboard accessibility for modals (Esc)
+    window.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){
+        if(contactModal.classList.contains('open')) closeContact();
+        if(confirmModal.classList.contains('open')) closeConfirm();
+      }
+    });
+  </script>
+
+  <!-- ========== END OF DOCUMENT ========== -->
+</body>
+</html>
